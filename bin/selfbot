@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-const cordlr = require('../');
+const selfbot = require('../');
 const minimist = require('minimist');
 const rc = require('rc');
 const log = require('log-cb');
@@ -10,9 +10,9 @@ const path = require('path');
  */
 
 // Get options and set defaults
-const options = rc('cordlr', {
+const options = rc('selfbot', {
   actions: path.join(__dirname, '../actions'),
-  prefix: '$'
+  prefix: 'self.'
 });
 
 // Print help screen.
@@ -29,7 +29,7 @@ if (options.version) {
 }
 
 // Create bot.
-const bot = cordlr(options);
+const bot = selfbot(options);
 
 // Log done message.
 bot.on('done', log('Loaded and authenticated the bot.'));

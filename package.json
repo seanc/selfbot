@@ -1,17 +1,20 @@
 {
-  "name": "cordlr",
-  "description": "Cordlr Bot for Discord",
+  "name": "selfbot",
+  "description": "Discord self bot",
   "version": "0.0.0",
   "license": "GPL-3.0",
-  "repository": "devcord/cordlr",
+  "repository": "seanc/selfbot",
   "main": "lib",
-  "bin": "./bin/cordlr",
+  "bin": "./bin/selfbot",
   "dependencies": {
+    "balanced-match": "^0.4.2",
     "chalk": "^1.1.3",
     "dargs": "^5.0.1",
     "discord.js": "^9.2.0",
     "log-cb": "^0.2.1",
+    "markdown": "^0.5.0",
     "minimist": "^1.2.0",
+    "node-notifier": "^4.6.1",
     "rc": "^1.1.6",
     "replace-ext": "^1.0.0",
     "spawn-args": "^0.2.0"
@@ -25,7 +28,7 @@
   },
   "scripts": {
     "test": "tape test.js | tap-spec",
-    "start": "node bin/main.js"
+    "start": "node bin/selfbot"
   },
   "files": [
     "lib",

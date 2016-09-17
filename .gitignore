@@ -1,5 +1,5 @@
 node_modules
-.cordlrrc*
+.selfbotrc*
 log
 *.pid
 npm-debug.log

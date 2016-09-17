@@ -25,6 +25,7 @@ function create (options) {
 
       // Handle messages
       bot.on('message', function (message) {
+        if (message.author.discriminator !== bot.user.discriminator) return;
         if (!message.content.indexOf(prefix) && message.channel.type !== 'dm') {
           // Parse the name and arguments.
           const raw = message.content.slice(prefix.length)
