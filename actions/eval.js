@@ -10,7 +10,7 @@ function eval(bot, opts) {
     }
 
     try {
-      const block = args.join(' ').trim().replace(/\n/g, '');
+      const block = args.join(' ').trim();
       const code = parse(block)[1][1][1].replace(/^js(.*)/g, '');
 
       const script = new vm.Script(unescape(code), {

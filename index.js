@@ -23,6 +23,8 @@ function create (options) {
     mapDir(actionPath, function (err, actions) {
       if (err) throw err;
 
+      actions.forEach(action => action(bot, options));
+
       // Handle messages
       bot.on('message', function (message) {
         if (message.author.discriminator !== bot.user.discriminator) return;

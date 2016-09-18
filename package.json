@@ -17,6 +17,7 @@
     "node-notifier": "^4.6.1",
     "rc": "^1.1.6",
     "replace-ext": "^1.0.0",
+    "request": "^2.75.0",
     "spawn-args": "^0.2.0"
   },
   "engines": {
@@ -37,7 +38,7 @@
     "index.js"
   ],
   "bugs": {
-    "url": "https://github.com/Devcord/cordlr/issues"
+    "url": "https://github.com/seanc/selfbot/issues"
   },
-  "homepage": "https://github.com/Devcord/cordlr#readme"
+  "homepage": "https://github.com/seanc/selfbot#readme"
 }

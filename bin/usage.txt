@@ -1,5 +1,5 @@
 
-$ cordlr <action> [...args]
+$ selfbot <action> [...args]
 
 Visit the "docs/" on GitHub for more info.
-(https://github.com/Devcord/cordlr/tree/master/docs)
+(https://github.com/seanc/selfbot/tree/master/docs)
