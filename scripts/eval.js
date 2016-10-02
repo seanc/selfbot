@@ -2,8 +2,8 @@ const parse = require('markdown').markdown.parse;
 const vm = require('vm');
 const util = require('util');
 
-function eval(bot, opts) {
-  return function run(message, args, notify) {
+function eval(bot, opts, notify) {
+  return function run(message, args) {
     if (args.length < 1) {
       return notify('Invalid args');
     }
