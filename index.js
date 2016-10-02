@@ -1,54 +1,36 @@
-module.exports = create;
-const DiscordClient = require('discord.js').Client;
-const minimist = require('minimist');
-const mapDir = require('./lib/map-dir');
-const log = require('log-cb');
-const spawnargs = require('spawn-args')
+const Client = require('discord.js').Client;
+const bot = new Client();
+const zt = require('zt');
+const notify = require('./notify');
+const config = require('rc')('selfbot', {
+  token: '',
+  prefix: 'self.'
+});
+const glob = require('require-glob');
 
-/**
- * Create the cordlr bot.
- */
+bot.on('ready', () => zt.log('Started'));
 
-function create (options) {
-  options = options || {};
-  const actionPath = options.actions;
-  const prefix = options.prefix;
+glob(['scripts/**/*.js']).then(modules => {
+  const scripts = Object.keys(modules).map(key => modules[key]);
+  const commands = new Map();
 
-  // Create bot.
-  const bot = new DiscordClient(options.client);
-
-  // Setup the command handling.
-  bot.once('ready', function () {
-    // Load ALL the actions for the bot.
-    mapDir(actionPath, function (err, actions) {
-      if (err) throw err;
-
-      actions.forEach(action => action(bot, options));
-
-      // Handle messages
-      bot.on('message', function (message) {
-        if (message.author.discriminator !== bot.user.discriminator) return;
-        if (!message.content.indexOf(prefix) && message.channel.type !== 'dm') {
-          // Parse the name and arguments.
-          const raw = message.content.slice(prefix.length)
-          const rawArgs = spawnargs(raw, { removequotes: 'always' })
-          const args = rawArgs.slice(1)
-          const name = rawArgs[0]
-
-          // Run it.
-          if(actions.has(name)) {
-            const action = actions.get(name)(bot, options);
-            if (action) action(message, args);
-          }
-        }
-      });
-
-      // Emit "done"
-      bot.emit('done');
-    });
+  scripts.forEach(script => {
+    const run = script(bot, config, notify);
+    if (run && script.command) {
+      commands.set(script.command, run);
+    }
   });
 
-  bot.login(options.token);
+  bot.on('message', message => {
+    if (message.content.startsWith(config.prefix) && message.author.discriminator === bot.user.discriminator) {
+      const args = message.content.slice(config.prefix.length).split(' ');
+      const command = args.shift();
 
-  return bot;
-}
+      if (commands.has(command)) {
+        commands.get(command)(message, args);
+      }
+    }
+  })
+}).catch(err => console.log(err));
+
+bot.login(config.token);

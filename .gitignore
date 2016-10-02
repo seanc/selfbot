@@ -3,4 +3,3 @@ node_modules
 log
 *.pid
 npm-debug.log
-config/index.js

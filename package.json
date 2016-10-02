@@ -1,44 +1,36 @@
 {
   "name": "selfbot",
-  "description": "Discord self bot",
-  "version": "0.0.0",
-  "license": "GPL-3.0",
+  "description": "Discord selfbot",
+  "version": "0.1.0",
+  "homepage": "https://github.com/seanc/selfbot",
+  "author": "Sean Wilson (https://imsean.me)",
   "repository": "seanc/selfbot",
-  "main": "lib",
-  "bin": "./bin/selfbot",
-  "dependencies": {
-    "balanced-match": "^0.4.2",
-    "chalk": "^1.1.3",
-    "dargs": "^5.0.1",
-    "discord.js": "^9.2.0",
-    "log-cb": "^0.2.1",
-    "markdown": "^0.5.0",
-    "minimist": "^1.2.0",
-    "node-notifier": "^4.6.1",
-    "rc": "^1.1.6",
-    "replace-ext": "^1.0.0",
-    "request": "^2.75.0",
-    "spawn-args": "^0.2.0"
-  },
-  "engines": {
-    "node": ">=6"
-  },
-  "devDependencies": {
-    "tap-spec": "^4.1.1",
-    "tape": "^4.6.0"
-  },
-  "scripts": {
-    "test": "tape test.js | tap-spec",
-    "start": "node bin/selfbot"
-  },
-  "files": [
-    "lib",
-    "actions",
-    "bin",
-    "index.js"
-  ],
   "bugs": {
     "url": "https://github.com/seanc/selfbot/issues"
   },
-  "homepage": "https://github.com/seanc/selfbot#readme"
+  "license": "MIT",
+  "files": [
+    "index.js",
+    "scripts",
+    "notify.js",
+    "LICENSE"
+  ],
+  "main": "index.js",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "selfbot"
+  ],
+  "dependencies": {
+    "discord.js": "^9.3.0",
+    "markdown": "^0.5.0",
+    "node-notifier": "^4.6.1",
+    "rc": "^1.1.6",
+    "require-glob": "^3.2.0",
+    "zt": "^1.0.0"
+  }
 }

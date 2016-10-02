@@ -1,10 +1,9 @@
 const parse = require('markdown').markdown.parse;
-const notify = require('../notify');
 const vm = require('vm');
 const util = require('util');
 
 function eval(bot, opts) {
-  return function run(message, args) {
+  return function run(message, args, notify) {
     if (args.length < 1) {
       return notify('Invalid args');
     }
@@ -24,7 +23,7 @@ function eval(bot, opts) {
         options: opts,
         require: require,
         debug: function(_message) {
-          message.channel.sendCode('js', util.inspect(_message));
+          message.channel.sendCode('js', util.inspect(_message), {split: true});
         }
       };
       const context = vm.createContext(inject);
@@ -39,5 +38,7 @@ function eval(bot, opts) {
     }
   };
 }
+
+eval.command = 'eval';
 
 module.exports = eval;

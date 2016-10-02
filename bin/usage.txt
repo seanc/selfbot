@@ -1,5 +1,0 @@
-
-$ selfbot <action> [...args]
-
-Visit the "docs/" on GitHub for more info.
-(https://github.com/seanc/selfbot/tree/master/docs)
